@@ -1,5 +1,6 @@
 import { Button, Layout } from "antd";
 import { Outlet } from "react-router-dom";
+import { toast } from "sonner";
 import { logout } from "../../redux/features/auth/authSlice";
 import { useAppDispatch } from "../../redux/hooks";
 import Sidebar from "./Sidebar";
@@ -35,6 +36,7 @@ const MainLayout = () => {
   const dispatch = useAppDispatch();
   const handleLogout = () => {
     dispatch(logout());
+    toast.success("Successfully logged out", { duration: 2000 });
   };
 
   return (
