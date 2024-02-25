@@ -1,3 +1,4 @@
+import { Input } from "antd";
 import { Controller } from "react-hook-form";
 
 type TInputProps = {
@@ -9,10 +10,10 @@ type TInputProps = {
 const PHInput = ({ type, name, label }: TInputProps) => {
   return (
     <div style={{ marginBottom: "20px" }}>
-      {label ? label : null} <br />
+      {label ? label : null} 
       <Controller
         name={name}
-        render={({ field }) => <input {...field} type={type} id={name} />}
+        render={({ field }) => <Input {...field} type={type} id={name} />}
       />
     </div>
   );
