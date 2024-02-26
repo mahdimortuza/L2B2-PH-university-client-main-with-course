@@ -1,9 +1,5 @@
-import React from 'react'
-
 const AcademicDepartment = () => {
-  return (
-    <div>AcademicDepartment</div>
-  )
-}
+  return <div>AcademicDepartment</div>;
+};
 
-export default AcademicDepartment
+export default AcademicDepartment;
