@@ -22,7 +22,7 @@ export const monthOptions = monthNames.map((item) => ({
   label: item,
 }));
 
-export const genderOption = genders.map((item) => ({
+export const genderOptions = genders.map((item) => ({
   value: item.toLowerCase(),
   label: item,
 }));
