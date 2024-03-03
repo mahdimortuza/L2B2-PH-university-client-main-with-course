@@ -5,12 +5,13 @@ import PHForm from "../../../components/form/PHForm";
 import PHInput from "../../../components/form/PHInput";
 import PHSelect from "../../../components/form/PHSelect";
 import {
-  useAddRegisteredSemestersMutation,
+  useAddCourseMutation,
   useGetAllCoursesQuery,
 } from "../../../redux/features/admin/courseManagement.api";
+import { TResponse } from "../../../types";
 
 const CreateCourse = () => {
-  const [addSemester] = useAddRegisteredSemestersMutation();
+  const [addCourse] = useAddCourseMutation();
   const { data: courses } = useGetAllCoursesQuery(undefined);
 
   const preRequisiteCoursesOptions = courses?.data?.map((item) => ({
@@ -19,28 +20,32 @@ const CreateCourse = () => {
   }));
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    const toastId = toast.loading("Creating a semester");
+    const toastId = toast.loading("Creating...");
 
     const courseData = {
       ...data,
+      code: Number(data.code),
+      credits: Number(data.credits),
       isDeleted: false,
-      preRequisiteCourses: data.preRequisiteCourses.map((item) => ({
-        course: item,
-        isDeleted: "false",
-      })),
+      preRequisiteCourses: data.preRequisiteCourses
+        ? data.preRequisiteCourses?.map((item) => ({
+            course: item,
+            isDeleted: "false",
+          }))
+        : [],
     };
     console.log(courseData);
 
-    // try {
-    //   const res = (await addSemester(semesterData)) as TResponse<any>;
-    //   if (res.error) {
-    //     toast.error(res.error.data.message, { id: toastId, duration: 3000 });
-    //   } else {
-    //     toast.success("semester is created", { id: toastId, duration: 3000 });
-    //   }
-    // } catch (error) {
-    //   toast.error("something went wrong", { id: toastId, duration: 3000 });
-    // }
+    try {
+      const res = (await addCourse(courseData)) as TResponse<any>;
+      if (res.error) {
+        toast.error(res.error.data.message, { id: toastId, duration: 3000 });
+      } else {
+        toast.success("course is created", { id: toastId, duration: 3000 });
+      }
+    } catch (error) {
+      toast.error("something went wrong", { id: toastId, duration: 3000 });
+    }
   };
 
   return (
