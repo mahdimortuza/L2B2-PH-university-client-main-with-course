@@ -18,6 +18,7 @@ import {
   useGetAllRegisteredSemestersQuery,
   useGetCourseFacultiesQuery,
 } from "../../../redux/features/admin/courseManagement.api";
+
 const OfferCourse = () => {
   const [courseId, setCourseId] = useState("");
 
