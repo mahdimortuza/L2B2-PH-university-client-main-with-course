@@ -33,4 +33,5 @@ export type TAcademicDepartment = {
 
 export type TAcademicFaculty = {
   name: string;
+  _id: string;
 };
