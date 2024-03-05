@@ -1,11 +1,13 @@
 import { Button, Col, Flex } from "antd";
-import moment from "moment";
-import { useState } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import PHForm from "../../../components/form/PHForm";
-import PHInput from "../../../components/form/PHInput";
 import PHSelect from "../../../components/form/PHSelect";
 import PHSelectWithWatch from "../../../components/form/PHSelectWithWatch";
+
+import { useState } from "react";
+import PHInput from "../../../components/form/PHInput";
+
+import moment from "moment";
 import PHTimePicker from "../../../components/form/PHTimePicker";
 import { weekDaysOptions } from "../../../constants/global";
 import {
@@ -80,6 +82,7 @@ const OfferCourse = () => {
     const res = await addOfferedCourse(offeredCourseData);
     console.log(res);
   };
+
   return (
     <Flex justify="center" align="center">
       <Col span={6}>
@@ -121,6 +124,7 @@ const OfferCourse = () => {
           />
           <PHTimePicker name="startTime" label="Start Time" />
           <PHTimePicker name="endTime" label="End Time" />
+
           <Button htmlType="submit">Submit</Button>
         </PHForm>
       </Col>
