@@ -35,3 +35,5 @@ export type TAcademicFaculty = {
   name: string;
   _id: string;
 };
+
+// types for academic management
